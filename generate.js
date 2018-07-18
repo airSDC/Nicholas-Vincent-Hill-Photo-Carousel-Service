@@ -1,1 +1,2 @@
-var db = require('./models/');
+var db = require('./models');
+var faker = require('faker');
