@@ -26,4 +26,6 @@ process.on('SIGINT', function() {
   });
 });
 
-module.exports = {};
+module.exports = {
+  Photo: require('./Photo')
+};
