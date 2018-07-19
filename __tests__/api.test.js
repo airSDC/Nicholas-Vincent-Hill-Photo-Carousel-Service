@@ -6,7 +6,7 @@ describe('API', () => {
   
   describe('GET /api/photos/:id', () => {
 
-    test('should respond with status code 200', (done) => {
+    test('should respond with status code 200', () => {
       
       return request(app)
         .get('/api/photos/1')
@@ -21,7 +21,7 @@ describe('API', () => {
         .expect(200)
         .expect( (res) => {
 
-          expect(state).toEqual(
+          expect(res.body).toEqual(
             expect.arrayContaining([      
               expect.objectContaining({
                 room_id: expect.anything(),
@@ -41,16 +41,18 @@ describe('API', () => {
         .get('/api/photos/1')
         .expect(200)
         .expect( (res) => { 
+
+          const item = res.body[0];
           
-          expect( res.body.room_id ).toEqual( expect.any(Number) );
-          expect( res.body.room_id ).toBeGreaterThanOrEqual( 0 );
-          expect( res.body.room_id ).toBeLessThanOrEqual( 100 );
+          expect( item.room_id ).toEqual( expect.any(Number) );
+          expect( item.room_id ).toBeGreaterThanOrEqual( 0 );
+          expect( item.room_id ).toBeLessThanOrEqual( 100 );
 
-          expect( res.body.description ).toEqual( expect.any(String) );
+          expect( item.description ).toEqual( expect.any(String) );
 
-          expect( res.body.verified ).toEqual( expect.any(Boolean) );
+          expect( item.verified ).toEqual( expect.any(Boolean) );
 
-          expect( res.body.photo_url ).toEqual( expect.any(String) );
+          expect( item.photo_url ).toEqual( expect.any(String) );
 
         });
     });
