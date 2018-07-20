@@ -4,7 +4,7 @@ const path = require('path');
 
 const db = require('./models/');
 
-const IMG_URL = "/assests/room";
+const IMG_URL = '/assests/room';
 
 const MAX_ID_RANGE = 100;
 const MAX_IMG_RANGE = 10;
@@ -31,7 +31,7 @@ db.Photo.remove({}).exec(function( err, results ) {
     
       var photo = new db.Photo({
         room_id: id,
-        photo_url: IMG_URL + imgs,
+        photo_url: IMG_URL + imgs + '.jpg'  ,
         verified: !Math.floor(Math.random() * 2),
         description: faker.lorem.paragraph()
       });
@@ -41,7 +41,7 @@ db.Photo.remove({}).exec(function( err, results ) {
           photo
             .save()
             .then((item) => { 
-              console.log("photo #"+item.id+" was created"); 
+              console.log('"'photo #'"'+item.id+'"' was created'"'); 
               return Promise.resolve( item );
             }) 
         );
