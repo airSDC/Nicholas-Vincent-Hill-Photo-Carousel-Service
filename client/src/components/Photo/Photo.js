@@ -14,11 +14,13 @@ class Photo extends Component {
   }
 
   componentWillMount() {
-    this.fetch('/api/photos/1')
+    var room = window.location.pathname;
+    fetch('/api' + room + '/photos')
       .then(res => {
         return res.json();
       })
       .then(photos => {
+        console.log(photos);
         this.setState({
           photos,
           photo: photos[0]
