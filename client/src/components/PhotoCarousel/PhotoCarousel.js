@@ -1,24 +1,41 @@
 import React, { Component } from 'react';
-import './PhotoCarousel.css';
+import classnames from 'classnames';
+// import './PhotoCarousel.css';
+
+import PhotoCarouselDisplay from './PhotoCarouselDisplay';
+import PhotoCarouselList from './PhotoCarouselList';
+
+// var classes =
 
 class PhotoCarousel extends Component {
-  // constructor(props){
-    // super();
-    // this.state = {};
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      photoList: [],
+      currentPhoto: {}
+    };
 
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
+    this.handleHideCarousel = this.handleHideCarousel.bind(this);
+  }
 
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
+  changePhoto() {}
+
+  handleHideCarousel() {
+    if (!this.props.isHidden) {
+      this.props.hideCarousel();
+    }
+  }
 
   render() {
+    var classes = classnames('photo-gallery-carousel', {
+      hide: this.props.isHidden
+    });
+
     return (
-      <div></div>
+      <div className={classes} onClick={this.handleHideCarousel}>
+        <PhotoCarouselDisplay photo={this.state.currentPhoto} />
+        <PhotoCarouselList photoList={this.state.photoList} />
+      </div>
     );
   }
 }

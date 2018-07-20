@@ -9,7 +9,6 @@ const PhotoSchema = new Schema({
   verified: { type: Boolean }
 });
 
-
-const Photo = mongoose.model( 'Photo', PhotoSchema );
+const Photo = mongoose.model('Photo', PhotoSchema);
 
 module.exports = Photo;

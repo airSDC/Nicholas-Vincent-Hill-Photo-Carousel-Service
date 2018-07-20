@@ -5,7 +5,7 @@ const PhotoDisplay = props => {
     return <div>Loading....</div>;
   }
   return (
-    <div className="photo-main-display">
+    <div className="photo-main-display" onClick={props.showCarousel}>
       <img src={props.photo.photo_url + '.jpg'} alt="main photo" />
       <div className="actions fx">
         <div className="actions-top fx">
