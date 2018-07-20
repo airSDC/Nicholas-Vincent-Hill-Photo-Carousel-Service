@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import './Photo.css';
 
 import PhotoDisplay from '../PhotoDisplay';
-import PhotoList from '../PhotoList';
+import PhotoCarousel from '../PhotoCarousel';
 
 class Photo extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       photos: [],
-      photo: ''
+      photo: {},
+      isCarouselHidden: true
     };
+
+    this.showCarousel = this.showCarousel.bind(this);
+    this.hideCarousel = this.hideCarousel.bind(this);
   }
 
   componentWillMount() {
@@ -19,10 +22,9 @@ class Photo extends Component {
       .then(res => {
         return res.json();
       })
-      .then(photos => {
-        console.log(photos);
+      .then(({ results: photos }) => {
         this.setState({
-          photos,
+          photos: photos,
           photo: photos[0]
         });
       })
@@ -33,11 +35,29 @@ class Photo extends Component {
 
   changePhoto() {}
 
+  showCarousel(e) {
+    e && e.stopPropagation();
+    console.log('show');
+    this.setState({ isCarouselHidden: false });
+  }
+
+  hideCarousel() {
+    console.log('hide');
+    this.setState({ isCarouselHidden: true });
+  }
+
   render() {
     return (
-      <div className="photo-gallery">
-        <PhotoDisplay photo={this.state.photo} />
-        <PhotoList photos={this.state.photos} />
+      <div className="photo-gallery" onClick={this.showCarousel}>
+        <PhotoDisplay
+          photo={this.state.photo}
+          showCarousel={this.showCarousel}
+        />
+        <PhotoCarousel
+          photos={this.state.photos}
+          ishidden={!this.state.isCarouselHidden}
+          hideCarousel={this.Carousel}
+        />
       </div>
     );
   }

@@ -1,3 +1,74 @@
 body {
-  background: red;
+  padding: 0;
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+.photo-gallery {
+}
+
+.photo-main-display {
+  height: 400px;
+}
+
+.photo-main-display img {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: inherit;
+  z-index: 1;
+}
+
+.photo-main-display .actions {
+  background-color: #0000001c;
+  position: relative;
+  z-index: 2;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 2% 1%;
+}
+
+.actions .actions-top {
+  justify-content: flex-end;
+}
+
+/********************************
+ Classes
+**********************************/
+
+.fx {
+  display: flex;
+}
+
+div button.btn:nth-last-child(1n + 2) {
+  margin-right: 10px;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: normal;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: 600;
+  border-width: 1px;
+  border-style: solid;
+  padding-left: 16px;
+  padding-right: 16px;
+  min-width: 51.77708763999664px;
+  box-shadow: none;
+  background: #ffffff;
+  border-color: transparent;
+  color: #484848;
 }
