@@ -29,4 +29,6 @@ jobs:
           paths:
             - ./node_modules
 
+      - run: npm run db:seed
+
       - run: npm test
