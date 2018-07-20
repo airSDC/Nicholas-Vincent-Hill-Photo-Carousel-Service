@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './PhotoList.css';
+import './PhotoCarousel.css';
 
-class PhotoList extends Component {
+class PhotoCarousel extends Component {
   // constructor(props){
-  // super();
-  // this.state = {};
+    // super();
+    // this.state = {};
   // }
 
   // componentWillMount(){}
@@ -17,8 +17,10 @@ class PhotoList extends Component {
   // componentDidUpdate(){}
 
   render() {
-    return <div>display List</div>;
+    return (
+      <div></div>
+    );
   }
 }
 
-export default PhotoList;
+export default PhotoCarousel;

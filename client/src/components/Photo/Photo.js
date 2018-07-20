@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './Photo.css';
 
 import PhotoDisplay from '../PhotoDisplay';
-import PhotoList from '../PhotoList';
+import PhotoCarousel from '../PhotoCarousel';
 
 class Photo extends Component {
   constructor(props) {
     super();
     this.state = {
       photos: [],
-      photo: ''
+      photo: '',
+      showCarousel: false
     };
   }
 
@@ -32,12 +32,16 @@ class Photo extends Component {
   }
 
   changePhoto() {}
+  toggleCarousel() {}
 
   render() {
     return (
       <div className="photo-gallery">
         <PhotoDisplay photo={this.state.photo} />
-        <PhotoList photos={this.state.photos} />
+        <PhotoCarousel
+          photos={this.state.photos}
+          hide={!this.state.showCarousel}
+        />
       </div>
     );
   }
