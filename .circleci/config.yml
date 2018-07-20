@@ -4,6 +4,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.4.0
+      - image: circleci/mongo:3.5.6 
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -27,5 +28,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+
+      - run: mongod 
 
       - run: npm test
