@@ -2,12 +2,24 @@ const db = require('../models');
 
 module.exports = {
   
-  index: function( req, res, next ){
-    console.log('photo index now good')
-    res.send('ok')
-  },
+  index: function( req, res, next ) {
+    /*
+      method: GET
+      route: '/api/photos/:id'
+    */
+    const roomId = req.params.id;
 
-  create: function( req, res) {
+    db.Photo.find({ room_id: roomId })
+      .exec()
+      .then(function(photos) {
 
+        if ( !photos || !photos.length ) {
+          return next();
+        }
+
+        res.json({ results: photos });
+
+      })
+      .catch(next);
   }
 }

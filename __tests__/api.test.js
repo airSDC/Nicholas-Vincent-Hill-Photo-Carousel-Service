@@ -21,7 +21,7 @@ describe('API', () => {
         .expect(200)
         .expect( (res) => {
 
-          expect(res.body).toEqual(
+          expect(res.body.results).toEqual(
             expect.arrayContaining([      
               expect.objectContaining({
                 room_id: expect.anything(),
@@ -42,7 +42,7 @@ describe('API', () => {
         .expect(200)
         .expect( (res) => { 
 
-          const item = res.body[0];
+          const item = res.body.results[0];
           
           expect( item.room_id ).toEqual( expect.any(Number) );
           expect( item.room_id ).toBeGreaterThanOrEqual( 0 );
