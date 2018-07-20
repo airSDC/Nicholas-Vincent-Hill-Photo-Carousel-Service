@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import Photo from '../Photo';
+
 class Applet extends Component {
   constructor(props) {
     super(props);
@@ -20,9 +22,9 @@ class Applet extends Component {
 
   render() {
     return (
-      <h1>
-        Hello {this.state.hello} this is a test <FontAwesome name="rocket" size="2x" />
-      </h1>
+      <React.Fragment>
+        <Photo />
+      </React.Fragment>
     );
   }
 }
