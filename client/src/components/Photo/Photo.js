@@ -16,7 +16,7 @@ class Photo extends Component {
     this.hideCarousel = this.hideCarousel.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     var room = window.location.pathname;
     fetch('/api' + room + '/photos')
       .then(res => {
@@ -33,15 +33,11 @@ class Photo extends Component {
       });
   }
 
-  showCarousel(e) {
-    e && e.stopPropagation();
-    console.log('show');
+  showCarousel() {
     this.setState({ isCarouselHidden: false });
   }
 
-  hideCarousel(e) {
-    e && e.sstopImmediatePropagation();
-    console.log('hide');
+  hideCarousel() {
     this.setState({ isCarouselHidden: true });
   }
 
