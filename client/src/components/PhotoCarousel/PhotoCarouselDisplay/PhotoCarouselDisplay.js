@@ -3,22 +3,15 @@ import './PhotoCarouselDisplay.css';
 
 class PhotoCarouselDisplay extends Component {
   // constructor(props){
-    // super();
-    // this.state = {};
+  // super();
+  // this.state = {};
   // }
-
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
-
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
 
   render() {
     return (
-      <div></div>
+      <div className="carousel-img">
+        <img src={this.props.photo.photo_url + '.jpg'} alt="" />
+      </div>
     );
   }
 }
