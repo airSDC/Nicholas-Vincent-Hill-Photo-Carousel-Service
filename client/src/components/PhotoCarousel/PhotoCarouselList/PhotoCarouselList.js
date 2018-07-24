@@ -28,30 +28,27 @@ class PhotoCarouselList extends Component {
   }
 
   componentDidMount() {
-    // // console.log(this.carouselList);
     this.carouselList.addEventListener('animationend', () => {
       const actionName = this.animationAction();
       this.carouselList.classList.remove(actionName);
-      console.log('animation is now done');
-      // this.setState({ isListHidden: !this.state.isListHidden });
     });
   }
 
   toggleCarouselList() {
-    // const isNowHidden = !this.state.isListHidden;
-    // this.carouselList.classList.add(this.nextAnimationAction());
     this.setState({
       isListHidden: !this.state.isListHidden
     });
   }
 
   render() {
-    console.log('list rerender');
-    const carouselListClasses = classnames('carousel-list', 'fx', {
-      hide: this.state.isListHidden,
-      opening: !this.state.isListHidden,
-      closing: this.state.isListHidden
-    });
+    const carouselListClasses = classnames(
+      'carousel-list',
+      'fx',
+      this.animationAction(),
+      {
+        'carousel-list-hide': this.state.isListHidden
+      }
+    );
     const photo = this.props.photos[this.props.photoIdx] || {};
     return (
       <div className="carousel-list-container">
