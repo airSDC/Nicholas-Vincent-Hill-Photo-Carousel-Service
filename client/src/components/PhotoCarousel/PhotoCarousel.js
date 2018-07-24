@@ -11,8 +11,7 @@ class PhotoCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 0,
-      hideList: false
+      index: 0
     };
 
     this.handleHideCarousel = this.handleHideCarousel.bind(this);
@@ -64,15 +63,14 @@ class PhotoCarousel extends Component {
           <PhotoCarouselSlider type="left" handleSlider={this.handleSlider} />
           <div className="carousel-main">
             <PhotoCarouselDisplay photo={photo} />
-            <PhotoCarouselList
-              isListHidden={this.state.hideList}
-              photoIdx={this.state.index}
-              photos={this.props.photos}
-              changePhoto={this.changePhoto}
-            />
           </div>
           <PhotoCarouselSlider type="right" handleSlider={this.handleSlider} />
         </div>
+        <PhotoCarouselList
+          photoIdx={this.state.index}
+          photos={this.props.photos}
+          changePhoto={this.changePhoto}
+        />
       </div>
     );
   }

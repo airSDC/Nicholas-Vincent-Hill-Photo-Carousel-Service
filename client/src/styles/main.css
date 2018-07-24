@@ -1,11 +1,43 @@
+/********************************
+ Defaults
+**********************************/
 body {
   padding: 0;
   margin: 0;
   font-size: 24px;
 }
+
 * {
   box-sizing: border-box;
 }
+
+/********************************
+ KeyFrames
+**********************************/
+
+@keyframes slidein {
+  from {
+    max-height: 0px;
+  }
+
+  to {
+    max-height: 80px;
+  }
+}
+
+@keyframes slideout {
+  from {
+    max-height: 80px;
+  }
+
+  to {
+    max-height: 0px;
+  }
+}
+
+/********************************
+ Photo Gallery
+**********************************/
 
 .photo-gallery-display {
   height: 400px;
@@ -76,13 +108,6 @@ body {
   text-align: right;
 }
 
-.carousel-list {
-  max-width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  overflow-x: hidden;
-}
-
 .carousel-list-header h3 {
   font-size: 0.5em;
 }
@@ -91,11 +116,39 @@ body {
   flex: 1 1 auto;
 }
 
+.carousel-list {
+  max-width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow-x: hidden;
+}
+
+.carousel-list.hide:not(.closing) {
+  display: none;
+}
+
+/*.carousel-list.hide.opening {
+  display: initial;
+}*/
+
+.carousel-list.opening {
+  animation-name: slidein;
+  animation-duration: 0.5s;
+  animation-delay: 0;
+}
+
+.carousel-list.closing {
+  animation-name: slideout;
+  animation-duration: 0.5s;
+  animation-delay: 0;
+}
+
 .carousel-list,
 .carousel-list-item {
   padding: 0;
   margin: 0;
   list-style: none;
+  font-size: 0;
 }
 
 .carousel-list-item img {
@@ -111,10 +164,10 @@ body {
 .fx {
   display: flex;
 }
-
+/*
 .hide {
   display: none;
-}
+}*/
 
 div button.btn:nth-last-child(1n + 2) {
   margin-right: 10px;
