@@ -9,7 +9,7 @@ class Photo extends Component {
     this.state = {
       photos: [],
       photo: {},
-      isCarouselHidden: true
+      isCarouselHidden: false
     };
 
     this.showCarousel = this.showCarousel.bind(this);
