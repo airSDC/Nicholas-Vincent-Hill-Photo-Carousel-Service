@@ -1,8 +1,7 @@
 const db = require('../models');
 
 module.exports = {
-  
-  index: function( req, res, next ) {
+  index: function(req, res, next) {
     /*
       method: GET
       route: '/api/photos/:id'
@@ -12,14 +11,12 @@ module.exports = {
     db.Photo.find({ room_id: roomId })
       .exec()
       .then(function(photos) {
-
-        if ( !photos || !photos.length ) {
+        if (!photos || !photos.length) {
           return next();
         }
 
         res.json({ results: photos });
-
       })
       .catch(next);
   }
-}
+};

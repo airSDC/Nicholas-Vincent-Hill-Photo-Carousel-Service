@@ -1,19 +1,17 @@
 body {
   padding: 0;
   margin: 0;
+  font-size: 24px;
 }
 * {
   box-sizing: border-box;
 }
 
-.photo-gallery {
-}
-
-.photo-main-display {
+.photo-gallery-display {
   height: 400px;
 }
 
-.photo-main-display img {
+.photo-gallery-display img {
   display: block;
   position: absolute;
   width: 100%;
@@ -21,7 +19,7 @@ body {
   z-index: 1;
 }
 
-.photo-main-display .actions {
+.photo-gallery-display .gallery-display {
   background-color: #0000001c;
   position: relative;
   z-index: 2;
@@ -31,8 +29,79 @@ body {
   padding: 2% 1%;
 }
 
-.actions .actions-top {
+.gallery-display .gallery-display-top {
   justify-content: flex-end;
+}
+
+/********************************
+ Carousel
+**********************************/
+
+.photo-gallery-carousel {
+  display: inline-block;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background-color: #000000d4;
+  padding: 2%;
+  top: 0;
+  color: white;
+  flex-direction: column;
+}
+
+.photo-gallery-carousel .photo-gallery-carousel-top {
+  justify-content: flex-end;
+}
+
+.carousel {
+  align-items: center;
+  height: 100%;
+}
+
+.carousel .carousel-slider {
+  flex: 0 1 20%;
+}
+
+.carousel-main {
+  flex: 1 1;
+  width: 60%;
+}
+
+.carousel-img img {
+  width: 100%;
+}
+
+.carousel-slider.right {
+  text-align: right;
+}
+
+.carousel-list {
+  max-width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow-x: hidden;
+}
+
+.carousel-list-header h3 {
+  font-size: 0.5em;
+}
+
+.carousel-list-header-item {
+  flex: 1 1 auto;
+}
+
+.carousel-list,
+.carousel-list-item {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.carousel-list-item img {
+  width: 130px;
+  height: 80px;
+  margin: 0px 5px;
 }
 
 /********************************
@@ -43,8 +112,18 @@ body {
   display: flex;
 }
 
+.hide {
+  display: none;
+}
+
 div button.btn:nth-last-child(1n + 2) {
   margin-right: 10px;
+}
+
+.action-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .btn {

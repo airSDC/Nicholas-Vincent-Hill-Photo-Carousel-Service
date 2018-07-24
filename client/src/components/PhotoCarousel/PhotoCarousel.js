@@ -1,24 +1,79 @@
 import React, { Component } from 'react';
-import './PhotoCarousel.css';
+import classnames from 'classnames';
+import Fa from 'react-fontawesome';
+// import './PhotoCarousel.css';
+
+import PhotoCarouselDisplay from './PhotoCarouselDisplay';
+import PhotoCarouselList from './PhotoCarouselList';
+import PhotoCarouselSlider from './PhotoCarouselSlider';
 
 class PhotoCarousel extends Component {
-  // constructor(props){
-    // super();
-    // this.state = {};
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 0,
+      hideList: false
+    };
 
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
+    this.handleHideCarousel = this.handleHideCarousel.bind(this);
+    this.changePhoto = this.changePhoto.bind(this);
+    this.handleSlider = this.handleSlider.bind(this);
+  }
 
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
+  changePhoto(newIndex) {
+    if (newIndex >= this.props.photos.length) {
+      newIndex = 0;
+    }
+
+    if (newIndex < 0) {
+      newIndex = this.props.photos.length;
+    }
+
+    this.setState({
+      index: newIndex
+    });
+  }
+
+  handleSlider(changeBy) {
+    this.changePhoto(this.state.index + changeBy);
+  }
+
+  handleHideCarousel() {
+    if (!this.props.isHidden) {
+      this.props.hideCarousel();
+    }
+  }
 
   render() {
+    var classes = classnames('photo-gallery-carousel', 'fx', {
+      hide: this.props.isHidden
+    });
+    const photo = this.props.photos[this.state.index] || {};
     return (
-      <div></div>
+      <div className={classes}>
+        <div className="photo-gallery-carousel-top fx">
+          <Fa
+            className="action-link"
+            name="times"
+            size="2x"
+            onClick={this.handleHideCarousel}
+          />
+        </div>
+
+        <div className="carousel fx">
+          <PhotoCarouselSlider type="left" handleSlider={this.handleSlider} />
+          <div className="carousel-main">
+            <PhotoCarouselDisplay photo={photo} />
+            <PhotoCarouselList
+              isListHidden={this.state.hideList}
+              photoIdx={this.state.index}
+              photos={this.props.photos}
+              changePhoto={this.changePhoto}
+            />
+          </div>
+          <PhotoCarouselSlider type="right" handleSlider={this.handleSlider} />
+        </div>
+      </div>
     );
   }
 }

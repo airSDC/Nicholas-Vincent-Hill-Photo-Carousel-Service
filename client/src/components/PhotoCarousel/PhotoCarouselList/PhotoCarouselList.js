@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 import './PhotoCarouselList.css';
 
+import PhotoCarouselListItem from './PhotoCarouselListItem';
+
+import PhotoCarouselListHeader from './PhotoCarouselListHeader';
+
 class PhotoCarouselList extends Component {
-  // constructor(props){
-    // super();
-    // this.state = {};
-  // }
-
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
-
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
-
   render() {
+    const photo = this.props.photos[this.props.photoIdx] || {};
     return (
-      <div></div>
+      <div className="carousel-list-container">
+        <PhotoCarouselListHeader
+          photoIdx={this.props.photoIdx}
+          photo={photo}
+          photosCount={this.props.photos.length}
+          islistHidden={this.props.islistHidden}
+        />
+        <ul className="carousel-list fx">
+          {this.props.photos.map((photo, idx) => (
+            <PhotoCarouselListItem
+              photo={photo}
+              id={idx}
+              key={idx}
+              changePhoto={this.props.changePhoto}
+            />
+          ))}
+        </ul>
+      </div>
     );
   }
 }

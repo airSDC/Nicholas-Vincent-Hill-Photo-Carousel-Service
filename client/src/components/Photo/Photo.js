@@ -16,7 +16,7 @@ class Photo extends Component {
     this.hideCarousel = this.hideCarousel.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     var room = window.location.pathname;
     fetch('/api' + room + '/photos')
       .then(res => {
@@ -33,30 +33,25 @@ class Photo extends Component {
       });
   }
 
-  changePhoto() {}
-
-  showCarousel(e) {
-    e && e.stopPropagation();
-    console.log('show');
+  showCarousel() {
     this.setState({ isCarouselHidden: false });
   }
 
   hideCarousel() {
-    console.log('hide');
     this.setState({ isCarouselHidden: true });
   }
 
   render() {
     return (
-      <div className="photo-gallery" onClick={this.showCarousel}>
+      <div className="photo-gallery">
         <PhotoDisplay
           photo={this.state.photo}
           showCarousel={this.showCarousel}
         />
         <PhotoCarousel
           photos={this.state.photos}
-          ishidden={!this.state.isCarouselHidden}
-          hideCarousel={this.Carousel}
+          isHidden={this.state.isCarouselHidden}
+          hideCarousel={this.hideCarousel}
         />
       </div>
     );

@@ -16,6 +16,7 @@
   "dependencies": {
     "babel-jest": "^23.4.0",
     "body-parser": "^1.18.3",
+    "classnames": "^2.2.6",
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "mongoose": "^5.2.4",

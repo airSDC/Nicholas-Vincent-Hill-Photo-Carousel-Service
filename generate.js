@@ -28,7 +28,7 @@ db.Photo.remove({}).exec(function(err, results) {
         room_id: id,
         photo_url: IMG_URL + imgs + '.jpg',
         verified: !Math.floor(Math.random() * 2),
-        description: faker.lorem.paragraph()
+        description: faker.lorem.sentence()
       });
 
       inProgressDataBaseEntrys.push(
