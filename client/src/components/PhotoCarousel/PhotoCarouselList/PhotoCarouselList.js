@@ -6,7 +6,7 @@ import PhotoCarouselListItem from './PhotoCarouselListItem';
 class PhotoCarouselList extends Component {
   render() {
     return (
-      <div className="carousel-list fx">
+      <ul className="carousel-list fx">
         {this.props.photos.map((photo, idx) => (
           <PhotoCarouselListItem
             photo={photo}
@@ -15,7 +15,7 @@ class PhotoCarouselList extends Component {
             changePhoto={this.props.changePhoto}
           />
         ))}
-      </div>
+      </ul>
     );
   }
 }

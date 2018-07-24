@@ -6,9 +6,9 @@ const PhotoCarouselListItem = props => {
   };
 
   return (
-    <div className="carousel-list-item" onClick={handleCarouselClick}>
-      <img src={'/assests/room2.jpg' || props.photo.photo_url} alt="pic" />
-    </div>
+    <li className="carousel-list-item" onClick={handleCarouselClick}>
+      <img src={props.photo.photo_url} alt="pic" />
+    </li>
   );
 };
 

@@ -5,6 +5,7 @@ import Fa from 'react-fontawesome';
 
 import PhotoCarouselDisplay from './PhotoCarouselDisplay';
 import PhotoCarouselList from './PhotoCarouselList';
+import PhotoCarouselSlider from './PhotoCarouselSlider';
 
 class PhotoCarousel extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class PhotoCarousel extends Component {
   }
 
   changePhoto(newIndex) {
-    if (newIndex > this.props.photos.length) {
+    if (newIndex >= this.props.photos.length) {
       newIndex = 0;
     }
 
@@ -46,7 +47,7 @@ class PhotoCarousel extends Component {
     var classes = classnames('photo-gallery-carousel', 'fx', {
       hide: this.props.isHidden
     });
-
+    const photo = this.props.photos[this.state.index] || {};
     return (
       <div className={classes}>
         <div className="photo-gallery-carousel-top fx">
@@ -61,13 +62,24 @@ class PhotoCarousel extends Component {
         <div className="carousel fx">
           <PhotoCarouselSlider type="left" handleSlider={this.handleSlider} />
           <div className="carousel-main">
-            <PhotoCarouselDisplay
-              photo={this.props.photos[this.state.index] || {}}
-            />
-            <PhotoCarouselList
-              photos={this.props.photos}
-              changePhoto={this.changePhoto}
-            />
+            <PhotoCarouselDisplay photo={photo} />
+            <div className="carousel-list-container">
+              <div className="carousel-list-head fx">
+                <div className="carousel-list-head-item">
+                  <h3>
+                    {this.state.index}/{this.props.photos.length}:{' '}
+                    {photo.description}
+                  </h3>
+                </div>
+                <div className="carousel-list-head-item">
+                  <h3 />
+                </div>
+              </div>
+              <PhotoCarouselList
+                photos={this.props.photos}
+                changePhoto={this.changePhoto}
+              />
+            </div>
           </div>
           <PhotoCarouselSlider type="right" handleSlider={this.handleSlider} />
         </div>
