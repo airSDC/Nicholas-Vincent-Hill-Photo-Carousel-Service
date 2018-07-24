@@ -15,6 +15,26 @@ body {
  KeyFrames
 **********************************/
 
+@keyframes slidein {
+  from {
+    max-height: 0px;
+  }
+
+  to {
+    max-height: 80px;
+  }
+}
+
+@keyframes slideout {
+  from {
+    max-height: 80px;
+  }
+
+  to {
+    max-height: 0px;
+  }
+}
+
 /********************************
  Photo Gallery
 **********************************/
@@ -103,16 +123,24 @@ body {
   overflow-x: hidden;
 }
 
-.carousel-list.hide {
+.carousel-list.hide:not(.closing) {
   display: none;
 }
 
+/*.carousel-list.hide.opening {
+  display: initial;
+}*/
+
 .carousel-list.opening {
-  transition: none;
+  animation-name: slidein;
+  animation-duration: 0.5s;
+  animation-delay: 0;
 }
 
 .carousel-list.closing {
-  transition: none;
+  animation-name: slideout;
+  animation-duration: 0.5s;
+  animation-delay: 0;
 }
 
 .carousel-list,
@@ -120,6 +148,7 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
+  font-size: 0;
 }
 
 .carousel-list-item img {
@@ -135,10 +164,10 @@ body {
 .fx {
   display: flex;
 }
-
+/*
 .hide {
   display: none;
-}
+}*/
 
 div button.btn:nth-last-child(1n + 2) {
   margin-right: 10px;

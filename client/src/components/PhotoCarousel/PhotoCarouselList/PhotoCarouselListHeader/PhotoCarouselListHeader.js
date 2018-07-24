@@ -18,7 +18,7 @@ class PhotoCarouselListHeader extends Component {
           className="carousel-list-head-item"
           onClick={this.props.toggleCarouselList}
         >
-          <h3>
+          <h3 className="action-link">
             {carouselListHideTitle} photo list{' '}
             <Fa name={`sort-${carouselListHideIconTitle}`} />
           </h3>

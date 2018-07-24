@@ -63,14 +63,14 @@ class PhotoCarousel extends Component {
           <PhotoCarouselSlider type="left" handleSlider={this.handleSlider} />
           <div className="carousel-main">
             <PhotoCarouselDisplay photo={photo} />
-            <PhotoCarouselList
-              photoIdx={this.state.index}
-              photos={this.props.photos}
-              changePhoto={this.changePhoto}
-            />
           </div>
           <PhotoCarouselSlider type="right" handleSlider={this.handleSlider} />
         </div>
+        <PhotoCarouselList
+          photoIdx={this.state.index}
+          photos={this.props.photos}
+          changePhoto={this.changePhoto}
+        />
       </div>
     );
   }

@@ -6,7 +6,10 @@ const PhotoCarouselListItem = props => {
   };
 
   return (
-    <li className="carousel-list-item" onClick={handleCarouselClick}>
+    <li
+      className="carousel-list-item action-link"
+      onClick={handleCarouselClick}
+    >
       <img src={props.photo.photo_url} alt="pic" />
     </li>
   );
