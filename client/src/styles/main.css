@@ -151,10 +151,15 @@ body {
   font-size: 0;
 }
 
-.carousel-list-item img {
+.carousel-list-item {
+  margin: 0px 5px;
   width: 130px;
   height: 80px;
-  margin: 0px 5px;
+}
+
+.carousel-list-item img {
+  width: inherit;
+  height: inherit;
 }
 
 /********************************

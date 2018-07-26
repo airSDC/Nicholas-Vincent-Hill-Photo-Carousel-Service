@@ -16,11 +16,13 @@ class PhotoCarouselList extends Component {
     };
 
     this.toggleCarouselList = this.toggleCarouselList.bind(this);
-    this._carouselList = React.createRef();
+    this.handleChangePhoto = this.handleChangePhoto.bind(this);
+
+    // this._carouselList = React.createRef();
   }
 
   get carouselList() {
-    return this._carouselList.current;
+    return this.props.carouselList.current;
   }
 
   animationAction() {
@@ -32,12 +34,18 @@ class PhotoCarouselList extends Component {
       const actionName = this.animationAction();
       this.carouselList.classList.remove(actionName);
     });
+
+    // console.log(el.scrollLeft);
   }
 
   toggleCarouselList() {
     this.setState({
       isListHidden: !this.state.isListHidden
     });
+  }
+
+  handleChangePhoto(target, id) {
+    this.props.changePhoto(id);
   }
 
   render() {
@@ -60,13 +68,13 @@ class PhotoCarouselList extends Component {
           toggleCarouselList={this.toggleCarouselList}
         />
         <div className="carousel-list-animation-container">
-          <ul className={carouselListClasses} ref={this._carouselList}>
+          <ul className={carouselListClasses} ref={this.props.carouselList}>
             {this.props.photos.map((photo, idx) => (
               <PhotoCarouselListItem
                 photo={photo}
                 id={idx}
                 key={idx}
-                changePhoto={this.props.changePhoto}
+                changePhoto={this.handleChangePhoto}
               />
             ))}
           </ul>
