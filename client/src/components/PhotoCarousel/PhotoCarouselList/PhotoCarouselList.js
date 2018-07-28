@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './PhotoCarouselList.css';
 import classnames from 'classnames';
 
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -17,8 +16,6 @@ class PhotoCarouselList extends Component {
 
     this.toggleCarouselList = this.toggleCarouselList.bind(this);
     this.handleChangePhoto = this.handleChangePhoto.bind(this);
-
-    // this._carouselList = React.createRef();
   }
 
   get carouselList() {
@@ -34,8 +31,6 @@ class PhotoCarouselList extends Component {
       const actionName = this.animationAction();
       this.carouselList.classList.remove(actionName);
     });
-
-    // console.log(el.scrollLeft);
   }
 
   toggleCarouselList() {

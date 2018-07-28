@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './PhotoCarouselListHeader.css';
 import Fa from 'react-fontawesome';
 
 class PhotoCarouselListHeader extends Component {

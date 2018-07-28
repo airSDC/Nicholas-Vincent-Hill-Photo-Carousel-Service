@@ -17,10 +17,11 @@ var requestAnimationFrame =
   window.requestAnimationFrame ||
   window.mozRequestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
-  window.msRequestAnimationFrame;
+  window.msRequestAnimationFrame ||
+  (() => {});
 
 var cancelAnimationFrame =
-  window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+  window.cancelAnimationFrame || window.mozCancelAnimationFrame || (() => {});
 
 class PhotoCarousel extends Component {
   constructor(props) {
