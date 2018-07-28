@@ -16,11 +16,13 @@ class PhotoCarouselList extends Component {
     };
 
     this.toggleCarouselList = this.toggleCarouselList.bind(this);
-    this._carouselList = React.createRef();
+    this.handleChangePhoto = this.handleChangePhoto.bind(this);
+
+    // this._carouselList = React.createRef();
   }
 
   get carouselList() {
-    return this._carouselList.current;
+    return this.props.carouselList.current;
   }
 
   animationAction() {
@@ -28,30 +30,33 @@ class PhotoCarouselList extends Component {
   }
 
   componentDidMount() {
-    // // console.log(this.carouselList);
     this.carouselList.addEventListener('animationend', () => {
       const actionName = this.animationAction();
       this.carouselList.classList.remove(actionName);
-      console.log('animation is now done');
-      // this.setState({ isListHidden: !this.state.isListHidden });
     });
+
+    // console.log(el.scrollLeft);
   }
 
   toggleCarouselList() {
-    // const isNowHidden = !this.state.isListHidden;
-    // this.carouselList.classList.add(this.nextAnimationAction());
     this.setState({
       isListHidden: !this.state.isListHidden
     });
   }
 
+  handleChangePhoto(target, id) {
+    this.props.changePhoto(id);
+  }
+
   render() {
-    console.log('list rerender');
-    const carouselListClasses = classnames('carousel-list', 'fx', {
-      hide: this.state.isListHidden,
-      opening: !this.state.isListHidden,
-      closing: this.state.isListHidden
-    });
+    const carouselListClasses = classnames(
+      'carousel-list',
+      'fx',
+      this.animationAction(),
+      {
+        'carousel-list-hide': this.state.isListHidden
+      }
+    );
     const photo = this.props.photos[this.props.photoIdx] || {};
     return (
       <div className="carousel-list-container">
@@ -63,13 +68,13 @@ class PhotoCarouselList extends Component {
           toggleCarouselList={this.toggleCarouselList}
         />
         <div className="carousel-list-animation-container">
-          <ul className={carouselListClasses} ref={this._carouselList}>
+          <ul className={carouselListClasses} ref={this.props.carouselList}>
             {this.props.photos.map((photo, idx) => (
               <PhotoCarouselListItem
                 photo={photo}
                 id={idx}
                 key={idx}
-                changePhoto={this.props.changePhoto}
+                changePhoto={this.handleChangePhoto}
               />
             ))}
           </ul>

@@ -7,6 +7,21 @@ import PhotoCarouselDisplay from './PhotoCarouselDisplay';
 import PhotoCarouselList from './PhotoCarouselList';
 import PhotoCarouselSlider from './PhotoCarouselSlider';
 
+const WIDTH_OF_LIST_ITEM = 140;
+const carouselPadding = 0.02;
+
+const scrollTime = 1000;
+
+// requestAnimationFrame cross browser
+var requestAnimationFrame =
+  window.requestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.msRequestAnimationFrame;
+
+var cancelAnimationFrame =
+  window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
 class PhotoCarousel extends Component {
   constructor(props) {
     super(props);
@@ -17,20 +32,13 @@ class PhotoCarousel extends Component {
     this.handleHideCarousel = this.handleHideCarousel.bind(this);
     this.changePhoto = this.changePhoto.bind(this);
     this.handleSlider = this.handleSlider.bind(this);
+
+    this._carouselList = React.createRef();
+    this.animationId = null;
   }
 
-  changePhoto(newIndex) {
-    if (newIndex >= this.props.photos.length) {
-      newIndex = 0;
-    }
-
-    if (newIndex < 0) {
-      newIndex = this.props.photos.length;
-    }
-
-    this.setState({
-      index: newIndex
-    });
+  get carouselList() {
+    return this._carouselList.current;
   }
 
   handleSlider(changeBy) {
@@ -41,6 +49,89 @@ class PhotoCarousel extends Component {
     if (!this.props.isHidden) {
       this.props.hideCarousel();
     }
+  }
+
+  changePhoto(newIndex, opts) {
+    if (newIndex >= this.props.photos.length) {
+      newIndex = 0;
+    }
+
+    if (newIndex < 0) {
+      newIndex = this.props.photos.length;
+    }
+
+    this.setState(
+      {
+        index: newIndex
+      },
+      () => {
+        this.animate(this.carouselList.children[newIndex].offsetLeft);
+      }
+    );
+  }
+
+  getCenterOfScreen() {
+    const screenWidth = window.innerWidth - window.innerWidth * carouselPadding;
+    const halfOfListItem = WIDTH_OF_LIST_ITEM / 2;
+
+    return (screenWidth - halfOfListItem) / 2;
+  }
+
+  animate(to) {
+    const centerOfScreen = this.getCenterOfScreen();
+    const lastScrollPosition = this.carouselList.scrollLeft;
+
+    const centerPositionForItem = Math.floor(to - centerOfScreen);
+
+    const scrollBy = Math.floor(
+      (centerPositionForItem - lastScrollPosition) / 10
+    );
+
+    this.slide(centerPositionForItem, scrollBy);
+  }
+
+  clearAnimation() {
+    return cancelAnimationFrame(this.animationId);
+  }
+
+  slide(to, scrollBy) {
+    const isGoingDown = scrollBy < 0;
+    let lastPosition = null;
+
+    this.clearAnimation();
+
+    const step = () => {
+      const newScrollValue = this.carouselList.scrollLeft + scrollBy;
+      const maxScrollLeft =
+        this.carouselList.scrollWidth - this.carouselList.clientWidth;
+
+      let hasInvalidNewPosition =
+        (!isGoingDown && newScrollValue >= to) ||
+        (isGoingDown && newScrollValue <= to);
+
+      if (
+        newScrollValue < 0 ||
+        newScrollValue >= this.getCenterOfScreen() * 2
+      ) {
+        this.carouselList.scrollLeft =
+          newScrollValue < 0 ? 0 : window.innerWidth;
+
+        hasInvalidNewPosition = true;
+      }
+
+      if (hasInvalidNewPosition || newScrollValue >= maxScrollLeft) {
+        this.carouselList.scrollLeft = to;
+        this.clearAnimation();
+        return;
+      }
+
+      this.carouselList.scrollLeft = newScrollValue;
+
+      lastPosition = this.carouselList.scrollLeft;
+      requestAnimationFrame(step);
+    };
+
+    this.animationId = requestAnimationFrame(step);
   }
 
   render() {
@@ -67,6 +158,7 @@ class PhotoCarousel extends Component {
           <PhotoCarouselSlider type="right" handleSlider={this.handleSlider} />
         </div>
         <PhotoCarouselList
+          carouselList={this._carouselList}
           photoIdx={this.state.index}
           photos={this.props.photos}
           changePhoto={this.changePhoto}

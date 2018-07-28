@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const PhotoCarouselListItem = props => {
   const handleCarouselClick = e => {
-    props.changePhoto(props.id);
+    props.changePhoto(e.currentTarget, props.id);
   };
 
   return (
