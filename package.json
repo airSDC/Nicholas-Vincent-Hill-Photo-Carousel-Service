@@ -33,13 +33,21 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^23.4.1",
+    "react-test-renderer": "^16.4.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.0.8"
   },
   "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/client/src/setup/setupEnzyme.js",
+    "testPathIgnorePatterns": [
+      "<rootDir>/client/src/setup/"
+    ],
     "collectCoverage": true,
     "verbose": true,
     "moduleFileExtensions": [

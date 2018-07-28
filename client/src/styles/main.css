@@ -5,10 +5,34 @@ body {
   padding: 0;
   margin: 0;
   font-size: 24px;
+  font-family: sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+span {
+  font-weight: inherit;
+}
+
+section {
+  margin-bottom: 15px;
 }
 
 /********************************
@@ -163,6 +187,62 @@ body {
 }
 
 /********************************
+ Footer
+**********************************/
+
+footer {
+  margin-top: 20px;
+}
+
+footer {
+  font-size: 14px;
+  letter-spacing: normal;
+  line-height: 18px;
+  padding: 40px 0px;
+}
+
+.footer-contents {
+}
+
+.footer-column {
+  flex: 1 0 auto;
+}
+
+.footer-column-header {
+  color: rgb(72, 72, 72);
+  margin-top: 0px;
+  margin-bottom: 16px;
+}
+
+.footer-column-item {
+  color: #767676;
+  padding-bottom: 5px;
+}
+
+.footer-column-item .action-link:hover {
+  text-decoration: underline;
+}
+
+.footer-sign {
+  padding: 16px 0px;
+}
+
+.footer-sign-item {
+  color: rgb(118, 118, 118);
+  flex: 1 0 auto;
+}
+
+.footer-sign-item:nth-child(1n + 2) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-sign-item:nth-child(1n + 2) .btn {
+  color: rgb(72, 72, 72) !important;
+  font-weight: normal;
+}
+
+/********************************
  Classes
 **********************************/
 
@@ -174,8 +254,19 @@ body {
   display: none;
 }
 
+.container {
+  width: 70%;
+  margin: auto;
+}
+
 div button.btn:nth-last-child(1n + 2) {
   margin-right: 10px;
+}
+
+.social-icon {
+  font-size: 18px;
+  margin-right: 10px;
+  color: rgb(118, 118, 118);
 }
 
 .action-link {
@@ -208,4 +299,8 @@ div button.btn:nth-last-child(1n + 2) {
   background: #ffffff;
   border-color: transparent;
   color: #484848;
+}
+
+.airfec-section {
+  border-top: solid #dbdbdb 1px;
 }
