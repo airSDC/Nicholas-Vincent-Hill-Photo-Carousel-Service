@@ -11,7 +11,7 @@ const PhotoCarouselSlider = props => {
     <div className={classes}>
       <Fa
         className="action-link"
-        name={`arrow-${props.type}`}
+        name={`chevron-${props.type}`}
         size="2x"
         onClick={() => props.handleSlider(isRight ? 1 : -1)}
       />
