@@ -6,6 +6,7 @@ module.exports = {
       method: GET
       route: '/api/photos/:id'
     */
+    console.log('MY PHOTO COMPONENT WAS HIT');
     const roomId = req.params.id;
 
     db.Photo.find({ room_id: roomId })

@@ -5,4 +5,4 @@ import Applet from './components/Applet';
 // Component level styling
 import './styles/main.css';
 
-ReactDOM.render(<Applet />, document.getElementById('root'));
+ReactDOM.render(<Applet />, document.getElementById('Photo'));

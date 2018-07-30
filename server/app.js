@@ -4,7 +4,15 @@ const path = require('path');
 
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3004);
+
+app.use(function(res, req, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  next();
+});
+
+app.use('/api', routes);
 
 app.get('/', function(req, res) {
   res.redirect('/rooms/1');
@@ -17,7 +25,5 @@ app.get('/rooms/:id', function(req, res) {
   const reactPath = path.join(__dirname, '../public/index.html');
   res.sendFile(reactPath);
 });
-
-app.use('/api', routes);
 
 module.exports = app;

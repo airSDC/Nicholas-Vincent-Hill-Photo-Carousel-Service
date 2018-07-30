@@ -31,4 +31,7 @@ class Applet extends Component {
   }
 }
 
+window.Photo = Photo;
+window.Footer = Footer;
+
 export default Applet;
