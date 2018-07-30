@@ -4,7 +4,6 @@
 body {
   padding: 0;
   margin: 0;
-  font-size: 24px;
   font-family: sans-serif;
 }
 
@@ -12,9 +11,11 @@ body {
   box-sizing: border-box;
 }
 
-ul,
 li {
   list-style: none;
+}
+
+ul {
   margin: 0;
   padding: 0;
 }
@@ -60,6 +61,11 @@ img {
   to {
     max-height: 0px;
   }
+}
+
+footer,
+#photo {
+  font-size: 24px;
 }
 
 /********************************
