@@ -23,7 +23,6 @@ class Photo extends Component {
         return res.json();
       })
       .then(({ results: photos }) => {
-        console.log(photos);
         this.setState({
           photos: photos,
           photo: photos[0]

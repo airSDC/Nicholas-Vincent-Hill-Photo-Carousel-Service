@@ -215,6 +215,7 @@ img {
 }
 
 .carousel-list-item img {
+  max-width: initial;
   width: inherit;
   height: inherit;
 }

@@ -10,6 +10,7 @@
   "scripts": {
     "db:seed": "node generate.js",
     "start": "nodemon server/index.js",
+    "start:pro": "node generate.js && webpack -d && node server/",
     "react-dev": "webpack -d --watch",
     "test": "jest"
   },

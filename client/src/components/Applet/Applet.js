@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import Photo from '../Photo';
-import Footer from '../Footer';
+// import Footer from '../Footer';
 
 class Applet extends Component {
   constructor(props) {
@@ -25,13 +25,13 @@ class Applet extends Component {
     return (
       <React.Fragment>
         <Photo />
-        <Footer />
+        {/*<Footer />*/}
       </React.Fragment>
     );
   }
 }
 
 window.Photo = Photo;
-window.Footer = Footer;
+// window.Footer = Footer;
 
 export default Applet;
