@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 
 import PhotoCarousel from './PhotoCarousel';
@@ -78,22 +78,54 @@ describe('<PhotoCarousel />', () => {
   ];
 
   const photoCarousel = () => {
-    carousel = shallow(
-      <PhotoCarousel photos={photos} isHidden={false} hideCarousel={() => {}} />
-    );
-
-    return carousel;
-  };
-
-  test('should render three <PhotoCarouselListItems /> components', () => {
-    expect(
-      shallow(
+    if (!carousel) {
+      carousel = mount(
         <PhotoCarousel
           photos={photos}
           isHidden={false}
           hideCarousel={() => {}}
         />
-      ).find('.carousel-list-item')
-    ).toBe(photos.length);
+      );
+    }
+
+    return carousel;
+  };
+
+  afterEach(() => {
+    carousel = null;
+  });
+
+  test('should render corrrect number of <PhotoCarouselListItem /> components', () => {
+    const lis = photoCarousel().find('.carousel-list-item');
+    expect(lis).toEqual(expect.any(Object));
+    expect(lis).toHaveLength(photos.length);
+  });
+
+  test('should display first photo in list when <PhotoDisplay /> is rendered', () => {
+    const idx = 5;
+    const photoDisplay = photoCarousel().find('.carousel-img');
+
+    expect(photoDisplay.find('img').prop('src')).toBe(photos[0].photo_url);
+    expect(photoCarousel().state('index')).toBe(0);
+  });
+
+  test('should update carousel display when <PhotoCarouselListItem /> is clicked', () => {
+    const idx = 5;
+    const photoDisplay = photoCarousel().find('.carousel-img');
+    const photo = photoCarousel()
+      .find(PhotoCarouselListItem)
+      .at(idx);
+
+    expect(+photo.key()).toBe(idx);
+
+    photo.simulate('click');
+
+    expect(photoCarousel().state('index')).toBe(idx);
+    expect(
+      photoCarousel()
+        .find('.carousel-img')
+        .find('img')
+        .prop('src')
+    ).toBe(photos[idx].photo_url);
   });
 });

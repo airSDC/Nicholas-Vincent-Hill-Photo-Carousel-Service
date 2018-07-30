@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import Fa from 'react-fontawesome';
-// import './PhotoCarousel.css';
 
 import PhotoCarouselDisplay from './PhotoCarouselDisplay';
 import PhotoCarouselList from './PhotoCarouselList';

@@ -116,20 +116,24 @@ section {
 }
 
 .carousel .carousel-slider {
-  flex: 0 1 20%;
+  flex: 1 1 30%;
 }
 
-.carousel-main {
-  flex: 1 1;
-  width: 60%;
+.carousel-img {
+  height: 400px;
 }
 
 .carousel-img img {
-  width: 100%;
+  width: auto;
+  height: 100%;
 }
 
 .carousel-slider.right {
   text-align: right;
+}
+
+.carousel-main {
+  text-align: center;
 }
 
 .carousel-list-header h3 {
@@ -145,6 +149,11 @@ section {
   margin-top: 10px;
   margin-bottom: 10px;
   overflow-x: hidden;
+}
+
+.carousel-list-container {
+  width: 85%;
+  margin: auto;
 }
 
 .carousel-list.carousel-list-hide:not(.closing) {
