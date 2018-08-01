@@ -303,6 +303,14 @@ footer {
   margin: auto;
 }
 
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100% !important;
+    /*margin-right: 5px;
+    margin-left: 5px;*/
+  }
+}
+
 div button.btn:nth-last-child(1n + 2) {
   margin-right: 10px;
 }
