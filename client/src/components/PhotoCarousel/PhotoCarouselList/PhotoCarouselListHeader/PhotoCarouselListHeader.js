@@ -9,7 +9,7 @@ class PhotoCarouselListHeader extends Component {
       <div className="carousel-list-header fx">
         <div className="carousel-list-header-item">
           <h3>
-            {this.props.photoIdx}/{this.props.photosCount}:{' '}
+            {this.props.photoIdx + 1}/{this.props.photosCount}:{' '}
             {this.props.photo.description}
           </h3>
         </div>

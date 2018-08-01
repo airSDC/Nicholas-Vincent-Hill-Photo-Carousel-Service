@@ -57,7 +57,7 @@ class PhotoCarousel extends Component {
     }
 
     if (newIndex < 0) {
-      newIndex = this.props.photos.length;
+      newIndex = this.props.photos.length - 1;
     }
 
     this.setState(
