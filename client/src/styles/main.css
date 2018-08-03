@@ -73,29 +73,37 @@ footer,
 **********************************/
 
 .photo-gallery-display {
-  height: 500px;
+  height: 400px;
 }
 
 .photo-gallery-display img {
   display: block;
-  position: absolute;
   width: 100%;
-  height: inherit;
   z-index: 1;
+  min-height: 400px;
+  width: 100%;
 }
 
 .photo-gallery-display .gallery-display {
   background-color: #0000001c;
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  top: 0;
+  z-index: 3;
   flex-direction: column;
-  height: 100%;
+  height: 400px;
+  width: 100%;
   justify-content: space-between;
   padding: 2%;
 }
 
 .gallery-display .gallery-display-top {
   justify-content: flex-end;
+}
+
+.image-wrapper {
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
 }
 
 /********************************

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Fa from 'react-fontawesome';
+import React, { Component } from "react";
+import Fa from "react-fontawesome";
 
 const PhotoDisplay = props => {
   if (!props.photo) {
@@ -7,7 +7,10 @@ const PhotoDisplay = props => {
   }
   return (
     <div className="photo-gallery-display" onClick={props.showCarousel}>
-      <img src={props.photo.photo_url} alt="main photo" />
+      <div className="image-wrapper">
+        <img src={props.photo.photo_url} alt="main photo" />
+      </div>
+
       <div className="gallery-display fx">
         <div className="gallery-display-top fx">
           <button className="btn">
