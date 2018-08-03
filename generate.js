@@ -4,7 +4,7 @@ const path = require('path');
 
 const db = require('./models/');
 
-const IMG_URL = '/assests/room';
+const IMG_URL = 'https://s3-us-west-1.amazonaws.com/airfec2018/photos/';
 
 const MAX_ID_RANGE = 100;
 const MAX_IMG_RANGE = 10;

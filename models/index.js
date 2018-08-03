@@ -1,8 +1,15 @@
 const mongoose = require('mongoose');
 
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/airfec-photos';
+// const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/airfec-photos';
+const dbURI = `mongodb://${encodeURIComponent(process.env.MONGODB_URI) ||
+  'localhost'}:27017/airfec-photos`;
 
-mongoose.connect(dbURI);
+console.log(dbURI);
+
+mongoose.connect(
+  dbURI,
+  { family: 4, useNewUrlParser: true }
+);
 
 mongoose.connection.on('connected', function() {
   console.log('Mongoose default connection open to ' + dbURI);
