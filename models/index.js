@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/airfec-photos';
-const dbURI = `mongodb://${encodeURIComponent(process.env.MONGODB_URI) ||
+const dbURI = `mongodb://${process.env.MONGODB_URI ||
   'localhost'}:27017/airfec-photos`;
 
 console.log(dbURI);

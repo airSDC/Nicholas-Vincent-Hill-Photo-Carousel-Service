@@ -4,10 +4,16 @@ const path = require('path');
 
 const db = require('./models/');
 
-const IMG_URL = 'https://s3-us-west-1.amazonaws.com/airfec2018/photos/';
+const IMG_URL = 'https://s3-us-west-1.amazonaws.com/airfec2018/photos/file-';
 
 const MAX_ID_RANGE = 100;
 const MAX_IMG_RANGE = 10;
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+}
 
 // drop cellection if exists
 console.log('cleared db for re-seed...\n');
@@ -26,7 +32,7 @@ db.Photo.remove({}).exec(function(err, results) {
     for (let imgs = 1; imgs <= MAX_IMG_RANGE; imgs++) {
       var photo = new db.Photo({
         room_id: id,
-        photo_url: IMG_URL + imgs + '.jpg',
+        photo_url: IMG_URL + getRandomIntInclusive(1, 75) + '.jpg',
         verified: !Math.floor(Math.random() * 2),
         description: faker.lorem.sentence()
       });
