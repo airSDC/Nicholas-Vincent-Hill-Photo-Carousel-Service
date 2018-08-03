@@ -34,10 +34,12 @@ class Photo extends Component {
   }
 
   showCarousel() {
+    document.body.classList.add('hide-all');
     this.setState({ isCarouselHidden: false });
   }
 
   hideCarousel() {
+    document.body.classList.remove('hide-all');
     this.setState({ isCarouselHidden: true });
   }
 

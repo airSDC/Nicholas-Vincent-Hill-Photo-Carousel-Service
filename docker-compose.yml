@@ -1,7 +1,7 @@
 version: "2"
 services:
   airfec:
-    container_name: airfec_photos
+    container_name: airfec_photos_server
     build: .
     image: airfec_photos
     ports:

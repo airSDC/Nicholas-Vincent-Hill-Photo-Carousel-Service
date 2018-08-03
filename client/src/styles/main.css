@@ -356,3 +356,7 @@ div button.btn:nth-last-child(1n + 2) {
 .airfec-section {
   border-top: solid #dbdbdb 1px;
 }
+
+.hide-all {
+  overflow: hidden;
+}
