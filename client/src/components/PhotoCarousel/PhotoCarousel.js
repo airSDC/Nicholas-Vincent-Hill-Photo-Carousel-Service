@@ -10,6 +10,8 @@ const WIDTH_OF_LIST_ITEM = 140;
 const carouselPadding = 0.02;
 
 const scrollTime = 1000;
+const LEFT_ARROW_KEY_CODE = 37;
+const RIGHT_ARROW_KEY_CODE = 39;
 
 // requestAnimationFrame cross browser
 var requestAnimationFrame =
@@ -35,6 +37,21 @@ class PhotoCarousel extends Component {
 
     this._carouselList = React.createRef();
     this.animationId = null;
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', e => {
+      if (this.props.isHidden) {
+        return;
+      }
+      console.log(e.keyCode);
+      var direction =
+        (e.keyCode === RIGHT_ARROW_KEY_CODE && 1) ||
+        (e.keyCode === LEFT_ARROW_KEY_CODE && -1) ||
+        false;
+
+      direction && this.handleSlider(direction);
+    });
   }
 
   get carouselList() {
