@@ -1,6 +1,6 @@
-# Airbnb Photo Component
+# Airbnb Booking Component
 
-> This is an mock-up airbnb photo carousel component built during the Hack Reactor immersive's Front End Capstone project.
+> This is an mock-up airbnb booking component built during the Hack Reactor immersive's Front End Capstone project.
 
 > This project is intended to work as a full-stack microservice integrated with my team's microservices to form a complete airbnb single item page.
 
@@ -31,11 +31,12 @@
 - Jest
 - Enzyme
 - CircleCI
-- grunt
-
-- Trello - https://trello.com/b/McTFtwUt/airfec-nick
 
 ## Requirements
+
+- Node v8.10.0
+- npm v3.5.2
+- MongoDB v3.6.3
 
 ### Installing Dependencies
 
@@ -44,14 +45,6 @@ From within the root directory:
 ```sh
 npm install
 ```
-
-To run dev enviroment/webpack
-
-```sh
-npm run build:dev
-```
-
-> Note: Mongo server needs to be started.
 
 ## Development
 
@@ -66,11 +59,17 @@ npm db:seed
 To run server
 
 ```sh
-npm start:dev
+npm start
+```
+
+To run dev enviroment/webpack
+
+```sh
+npm run react-dev
 ```
 
 To run tests
 
 ```sh
-npm run test
+npm test
 ```
