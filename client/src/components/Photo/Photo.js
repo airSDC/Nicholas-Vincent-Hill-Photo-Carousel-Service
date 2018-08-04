@@ -33,7 +33,8 @@ class Photo extends Component {
       });
   }
 
-  showCarousel() {
+  showCarousel(e) {
+    e && e.stopPropagation && e.stopPropagation();
     document.body.classList.add('hide-all');
     this.setState({ isCarouselHidden: false });
   }
