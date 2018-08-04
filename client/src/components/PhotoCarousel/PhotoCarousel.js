@@ -139,8 +139,17 @@ class PhotoCarousel extends Component {
       hide: this.props.isHidden
     });
     const photo = this.props.photos[this.state.index] || {};
+
+    let color = ['red', 'blue', 'green'];
+
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+    }
+
     return (
-      <div className={classes}>
+      <div className={classes} style={{ top: window.scrollY }}>
         <div className="photo-gallery-carousel-top fx">
           <Fa
             className="action-link"
