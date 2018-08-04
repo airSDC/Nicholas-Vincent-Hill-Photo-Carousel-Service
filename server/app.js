@@ -7,6 +7,7 @@ const app = express();
 app.set('port', process.env.PORT || 3004);
 
 app.use(function(res, req, next) {
+  console.log('welcome to airfec user');
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
   next();

@@ -10,9 +10,9 @@
   "scripts": {
     "db:seed": "node generate.js",
     "build": "grunt deploy",
+    "build:dev": "grunt build",
     "start:dev": "nodemon server/index.js",
     "start": "node generate.js && node server/",
-    "build:dev": "grunt build",
     "test": "jest",
     "docker:update": "./update.sh" ,
     "docker:deploy": "docker tag airfec_photos airfec/airfec_photos:latest && docker push airfec/airfec_photos"
