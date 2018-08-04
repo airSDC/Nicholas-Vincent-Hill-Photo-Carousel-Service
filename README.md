@@ -1,4 +1,4 @@
-# Airbnb Booking Component
+# Airbnb Photo Component
 
 > This is an mock-up airbnb booking component built during the Hack Reactor immersive's Front End Capstone project.
 
