@@ -6,5 +6,14 @@
  */
 
 module.exports = {
-  extends: './node_modules/eslint-config-hackreactor/index.js'
+  parser: "babel-eslint",
+  env: {
+    browser: true,
+    node: true,
+    jest: true
+  },
+  extends: "airbnb",
+  rules: {
+    "no-tabs": 0
+  }
 };

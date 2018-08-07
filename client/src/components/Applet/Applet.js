@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { Component } from "react";
+import FontAwesome from "react-fontawesome";
 
-import Photo from '../Photo';
+import Photo from "../Photo";
 
 class Applet extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hello: 'world'
+      hello: "world"
     };
   }
 
