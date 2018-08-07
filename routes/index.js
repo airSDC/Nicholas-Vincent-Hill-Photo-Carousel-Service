@@ -1,18 +1,20 @@
-const express = require("express");
-const ctrl = require("./../controllers");
+const express = require('express');
+const ctrl = require('./../controllers');
 
 const router = express.Router();
 
-router.get("/rooms/:id/photos/", ctrl.photos.index);
-// router.post('/photos/:id', ctrl.photos.create);
+router.get('/rooms/:id/photos/', ctrl.photos.get);
+router.post('/rooms/:id/photos/', ctrl.photos.post);
+router.put('/rooms/:id/photos/', ctrl.photos.put);
+router.delete('/rooms/:id/photos/', ctrl.photos.delete);
 
-router.use(function(req, res, next) {
-  res.status(404).send("not found");
+router.use((req, res, next) => {
+  res.status(404).send('not found');
 });
 
-router.use(function(err, req, res, next) {
+router.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).send("BAD");
+  res.status(500).send('BAD');
 });
 
 module.exports = router;
