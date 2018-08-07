@@ -59,7 +59,7 @@
       "<rootDir>/client/src/setup/"
     ],
     "collectCoverage": true,
-    "verbose": true,
+    "verbose": false,
     "moduleFileExtensions": [
       "jsx",
       "js"
