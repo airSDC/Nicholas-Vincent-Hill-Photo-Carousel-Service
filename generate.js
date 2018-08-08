@@ -6,7 +6,7 @@ const db = require('./models/');
 
 const IMG_URL = 'https://s3-us-west-1.amazonaws.com/airfec2018/photos/file-';
 
-const MAX_ID_RANGE = 100;
+const MAX_ID_RANGE = 10000000;
 const MAX_IMG_RANGE = 10;
 
 const getRandomIntInclusive = (min, max) => {
@@ -36,11 +36,11 @@ db.Photo.remove({}).exec((err) => {
         description: faker.lorem.sentence(),
       });
 
-      inProgressDataBaseEntries.push(
-        photo.save().then((item) => {
-          Promise.resolve(item);
-        }), // trailing comma breaking
-      );
+      const result = photo.save().then((item) => {
+        Promise.resolve(item);
+      });
+
+      inProgressDataBaseEntries.push(result);
     }
   }
 
