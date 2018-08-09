@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "generate": "node generate.js",
+    "generate1": "time node --max-old-space-size=8192 generate.js | gzip -c > data/data1.csv.gz",
     "build": "grunt deploy",
     "build:dev": "grunt build",
     "start:dev": "nodemon server/index.js",
@@ -35,8 +35,6 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "css-loader": "^1.0.0",
-    "csv-writer": "^1.0.0",
     "dotenv": "^6.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",

@@ -26,3 +26,6 @@ coverage
 build/
 dist/
 
+# generated data
+data
+
