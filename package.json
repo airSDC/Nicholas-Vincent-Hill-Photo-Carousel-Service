@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "generate": "time node --max-old-space-size=8192 generate.js",
+    "generate": "time node --max-old-space-size=4096 generate.js",
     "build": "grunt deploy",
     "build:dev": "grunt build",
     "start:dev": "nodemon server/index.js",
