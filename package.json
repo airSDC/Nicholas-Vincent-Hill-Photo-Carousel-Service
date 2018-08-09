@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "generate1": "time node --max-old-space-size=8192 generate.js | gzip -c > data/data1.csv.gz",
+    "generate": "time node --max-old-space-size=8192 generate.js",
     "build": "grunt deploy",
     "build:dev": "grunt build",
     "start:dev": "nodemon server/index.js",
