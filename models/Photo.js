@@ -5,12 +5,12 @@ console.log('seeding db...');
 const connectionString = 'postgres://localhost:5432/sdcphotos';
 
 // CREATE TABLE photos (
-//   key        BIGSERIAL PRIMARY KEY,
+//   _id         BIGSERIAL PRIMARY KEY,
 //   id         INTEGER,
 //   name       VARCHAR (255),
 //   url        VARCHAR (255),
 //   verified   BOOLEAN,
-//   desc       VARCHAR (255)
+//   description       VARCHAR (255)
 // );
 
 const pool = new Pool({
@@ -22,27 +22,28 @@ const pool = new Pool({
   connectionString,
 });
 
+const fileNumber = 10;
+
 const loadCSV = () => {
-  const prefix = 'COPY photos FROM';
-  const path = '/home/nick/projects/hackreactor/systemdesigncapstone/Photo-Carousel-Service/data/data1.csv';
-  const suffix = 'WITH (FORMAT csv);';
-  pool.query(`${prefix} ${path} ${suffix}`, (err, res) => {
+  const query = `COPY photos(_id, id, name, url, verified, description) FROM '/home/nick/projects/hackreactor/systemdesigncapstone/Photo-Carousel-Service/data/data${fileNumber}.csv' WITH (FORMAT csv);`;
+  console.log(query);
+  pool.query(query, (err, res) => {
     if (err) {
-      console.log('Error copying file 01', err);
+      console.log(`Error copying file ${fileNumber}`, err);
     }
-    console.log('File 01 loaded successfully', res);
+    console.log(`File ${fileNumber} loaded successfully`, res);
     pool.end();
   });
 };
 
 loadCSV();
 
-pool.query("select * from photos where id ='1';", (err, res) => {
-  // console.log(err, res)
-  if (err) console.log(err);
-  const test = res;
-  console.log(test);
-  pool.end();
-});
+// pool.query("select * from photos where id ='1';", (err, res) => {
+//   // console.log(err, res)
+//   if (err) console.log(err);
+//   const test = res;
+//   console.log(test);
+//   pool.end();
+// });
 
 // module.exports = Photo;
