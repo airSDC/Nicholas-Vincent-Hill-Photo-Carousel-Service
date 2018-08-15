@@ -8,16 +8,7 @@ module.exports = {
     */
     const roomId = req.params.id;
 
-    db.Photo.find({ room_id: roomId })
-      .exec()
-      .then((photos) => {
-        if (!photos || !photos.length) {
-          return next();
-        }
-
-        res.json({ results: photos });
-      })
-      .catch(next);
+    db.getPhoto(roomId);
   },
   post(req, res, next) {
     /*
