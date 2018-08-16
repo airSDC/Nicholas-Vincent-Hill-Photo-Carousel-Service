@@ -1,9 +1,5 @@
 const { Pool, Client } = require('pg');
 
-console.log('seeding db...');
-
-const connectionString = 'postgres://localhost:5432/sdcphotos';
-
 // CREATE TABLE photos (
 //   _id         BIGSERIAL PRIMARY KEY,
 //   id         INTEGER,
@@ -13,37 +9,33 @@ const connectionString = 'postgres://localhost:5432/sdcphotos';
 //   description       VARCHAR (255)
 // );
 
-const pool = new Pool({
-  // user: 'nick',
-  // // host: 'database.server.com',
-  // database: 'sdcphotos',
-  // password: 'qw3rty',
-  // // port: 3211,
-  connectionString,
-});
 
-const fileNumber = 10;
+// const loadCSV = () => {
+//   const prefix = 'COPY photos FROM';
+//   const path = '/home/nick/projects/hackreactor/systemdesigncapstone/Photo-Carousel-Service/data/data1.csv';
+//   const suffix = 'WITH (FORMAT csv);';
+//   pool.query(`${prefix} ${path} ${suffix}`, (err, res) => {
+//     if (err) {
+//       console.log('Error copying file 01', err);
+//     }
+//     console.log('File 01 loaded successfully', res);
+//     pool.end();
+//   });
+// };
 
-const loadCSV = () => {
-  const query = `COPY photos(_id, id, name, url, verified, description) FROM '/home/nick/projects/hackreactor/systemdesigncapstone/Photo-Carousel-Service/data/data${fileNumber}.csv' WITH (FORMAT csv);`;
-  console.log(query);
-  pool.query(query, (err, res) => {
+// loadCSV();
+
+const getPhoto = (id, callback) => {
+  const pool = new Pool();
+  pool.query(`SELECT * FROM photos WHERE _id BETWEEN '${id}' AND '${Number(id) + 9}';`, (err, res) => {
     if (err) {
-      console.log(`Error copying file ${fileNumber}`, err);
+      console.log(err);
+    } else {
+      callback(res);
+      pool.end();
     }
-    console.log(`File ${fileNumber} loaded successfully`, res);
-    pool.end();
   });
 };
 
-loadCSV();
+module.exports = getPhoto;
 
-// pool.query("select * from photos where id ='1';", (err, res) => {
-//   // console.log(err, res)
-//   if (err) console.log(err);
-//   const test = res;
-//   console.log(test);
-//   pool.end();
-// });
-
-// module.exports = Photo;

@@ -29,9 +29,11 @@ const generateData = (start, end, fileNumber, counter = 0) => {
   console.log(primary);
 };
 
-const start = 9000001;
-const end =  10000001;
+
+const start = 1;
+const end = 100;
 
 console.time('data');
-setTimeout(() => generateData(start, end, 10, 90000090), 0);
+setTimeout(() => generateData(start, end, 'test'), 0);
+
 console.timeEnd('data');

@@ -9,7 +9,7 @@ class Photo extends Component {
     this.state = {
       photos: [],
       photo: {},
-      isCarouselHidden: true
+      isCarouselHidden: true,
     };
 
     this.showCarousel = this.showCarousel.bind(this);
@@ -17,18 +17,17 @@ class Photo extends Component {
   }
 
   componentDidMount() {
-    var room = window.location.pathname;
-    fetch('/api' + room + '/photos')
-      .then(res => {
-        return res.json();
-      })
-      .then(({ results: photos }) => {
+    const room = window.location.pathname;
+    fetch(`/api${room}/photos`)
+      .then(res => res.json())
+      .then((photos) => {
+        console.log(photos);
         this.setState({
-          photos: photos,
-          photo: photos[0]
+          photos,
+          photo: photos[0],
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -47,10 +46,7 @@ class Photo extends Component {
   render() {
     return (
       <div className="photo-gallery">
-        <PhotoDisplay
-          photo={this.state.photo}
-          showCarousel={this.showCarousel}
-        />
+        <PhotoDisplay photo={this.state.photo} showCarousel={this.showCarousel} />
         <PhotoCarousel
           photos={this.state.photos}
           isHidden={this.state.isCarouselHidden}
