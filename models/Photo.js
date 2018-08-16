@@ -1,7 +1,5 @@
 const { Pool, Client } = require('pg');
 
-const connectionString = 'postgres://localhost:5432/sdcphotos';
-
 // CREATE TABLE photos (
 //   key        BIGSERIAL PRIMARY KEY,
 //   id         INTEGER,
@@ -10,15 +8,6 @@ const connectionString = 'postgres://localhost:5432/sdcphotos';
 //   verified   BOOLEAN,
 //   desc       VARCHAR (255)
 // );
-
-const pool = new Pool({
-  connectionString,
-  user: process.env.USER,
-  // host: 'database.server.com',
-  database: 'sdcphotos',
-  password: process.env.PASSWORD,
-  // port: 3211,
-});
 
 // const loadCSV = () => {
 //   const prefix = 'COPY photos FROM';
@@ -35,12 +24,15 @@ const pool = new Pool({
 
 // loadCSV();
 
-const getPhoto = (id) => {
-  pool.query(`select * from photos where ${id} ='1';`, (err, res) => {
-    // console.log(err, res)
-    if (err) console.log(err);
-    console.log(res);
-    pool.end();
+const getPhoto = (id, callback) => {
+  const pool = new Pool();
+  pool.query(`SELECT * FROM photos WHERE _id BETWEEN '${id}' AND '${Number(id) + 9}';`, (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(res);
+      pool.end();
+    }
   });
 };
 

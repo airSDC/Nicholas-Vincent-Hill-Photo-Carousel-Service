@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import Fa from 'react-fontawesome';
 
-const PhotoDisplay = props => {
+const PhotoDisplay = (props) => {
   if (!props.photo) {
-    return <div>Loading....</div>;
+    return (
+      <div>
+Loading....
+      </div>
+    );
   }
 
-  const handleClickForDisplay = e => {
+  const handleClickForDisplay = (e) => {
     e && e.stopPropagation && e.stopPropagation();
-    if (
-      e.target.nodeName !== 'DIV' ||
-      !e.target.classList.contains('gallery-display')
-    ) {
+    if (e.target.nodeName !== 'DIV' || !e.target.classList.contains('gallery-display')) {
       return;
     }
     props.showCarousel();
@@ -20,16 +21,20 @@ const PhotoDisplay = props => {
   return (
     <div className="photo-gallery-display" onClick={handleClickForDisplay}>
       <div className="image-wrapper">
-        <img src={props.photo.photo_url} alt="main photo" />
+        <img src={props.photo.url} alt="main photo" />
       </div>
 
       <div className="gallery-display fx">
         <div className="gallery-display-top fx">
           <button className="btn">
-            <Fa name="share" /> Share
+            <Fa name="share" />
+            {' '}
+Share
           </button>
           <button className="btn">
-            <Fa name="heart-o" /> Save
+            <Fa name="heart-o" />
+            {' '}
+Save
           </button>
         </div>
         <div className="gallery-display-bottom">

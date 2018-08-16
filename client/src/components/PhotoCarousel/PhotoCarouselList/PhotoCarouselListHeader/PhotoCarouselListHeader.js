@@ -9,16 +9,18 @@ class PhotoCarouselListHeader extends Component {
       <div className="carousel-list-header fx">
         <div className="carousel-list-header-item">
           <h3>
-            {this.props.photoIdx + 1}/{this.props.photosCount}:{' '}
+            {this.props.photoIdx + 1}
+/
+            {this.props.photosCount}
+:
             {this.props.photo.description}
           </h3>
         </div>
-        <div
-          className="carousel-list-head-item"
-          onClick={this.props.toggleCarouselList}
-        >
+        <div className="carousel-list-head-item" onClick={this.props.toggleCarouselList}>
           <h3 className="action-link">
-            {carouselListHideTitle} photo list{' '}
+            {carouselListHideTitle}
+            {' '}
+photo list
             <Fa name={`sort-${carouselListHideIconTitle}`} />
           </h3>
         </div>
