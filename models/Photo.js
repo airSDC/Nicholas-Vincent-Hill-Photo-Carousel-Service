@@ -1,13 +1,14 @@
 const { Pool, Client } = require('pg');
 
 // CREATE TABLE photos (
-//   key        BIGSERIAL PRIMARY KEY,
+//   _id         BIGSERIAL PRIMARY KEY,
 //   id         INTEGER,
 //   name       VARCHAR (255),
 //   url        VARCHAR (255),
 //   verified   BOOLEAN,
-//   desc       VARCHAR (255)
+//   description       VARCHAR (255)
 // );
+
 
 // const loadCSV = () => {
 //   const prefix = 'COPY photos FROM';
@@ -37,3 +38,4 @@ const getPhoto = (id, callback) => {
 };
 
 module.exports = getPhoto;
+
