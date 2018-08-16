@@ -9,7 +9,6 @@ module.exports = {
     const roomId = req.params.id;
 
     db.getPhoto(roomId, (data) => {
-      console.log('success');
       res.json(data.rows);
     });
   },
