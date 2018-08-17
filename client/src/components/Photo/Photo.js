@@ -21,7 +21,6 @@ class Photo extends Component {
     fetch(`/api${room}/photos`)
       .then(res => res.json())
       .then((photos) => {
-        console.log(photos);
         this.setState({
           photos,
           photo: photos[0],

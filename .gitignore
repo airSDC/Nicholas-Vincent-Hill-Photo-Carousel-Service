@@ -28,3 +28,6 @@ dist/
 
 # data
 data/
+
+#new relic
+newrelic.js
