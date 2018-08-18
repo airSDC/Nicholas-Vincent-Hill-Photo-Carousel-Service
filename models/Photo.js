@@ -25,14 +25,14 @@ const { Pool, Client } = require('pg');
 
 // loadCSV();
 
+const pool = new Pool();
+
 const getPhoto = (id, callback) => {
-  const pool = new Pool();
   pool.query(`SELECT * FROM photos WHERE _id BETWEEN '${id}' AND '${Number(id) + 9}';`, (err, res) => {
     if (err) {
       console.log(err);
     } else {
       callback(res);
-      pool.end();
     }
   });
 };

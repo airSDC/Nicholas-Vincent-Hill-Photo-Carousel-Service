@@ -3,30 +3,51 @@ require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
+const cluster = require('cluster');
 const routes = require('./../routes');
 
-const app = express();
+if (cluster.isMaster) {
+  const numWorkers = 4;
 
-app.set('port', process.env.PORT || 3004);
+  console.log(`Master cluster setting up ${numWorkers} workers...`);
 
-app.use((res, req, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-  next();
-});
+  for (let i = 0; i < numWorkers; i += 1) {
+    cluster.fork();
+  }
 
-app.use('/api', routes);
+  cluster.on('online', (worker) => {
+    console.log(`Worker ${worker.process.pid} is online`);
+  });
 
-app.get('/', (req, res) => {
-  res.redirect('/rooms/1');
-});
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`Worker ${worker.process.pid} died with code: ${code}, and signal: ${signal}`);
+    console.log('Starting a new worker');
+    cluster.fork();
+  });
+} else {
+  const app = express();
 
-app.use(express.static('public/'));
-app.use(express.static('client/dist'));
+  app.set('port', process.env.PORT || 3004);
 
-app.get('/rooms/:id', (req, res) => {
-  const reactPath = path.join(__dirname, '../public/index.html');
-  res.sendFile(reactPath);
-});
+  app.use((res, req, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    next();
+  });
 
-module.exports = app;
+  app.use('/api', routes);
+
+  app.get('/', (req, res) => {
+    res.redirect('/rooms/1');
+  });
+
+  app.use(express.static('public/'));
+  app.use(express.static('client/dist'));
+
+  app.get('/rooms/:id', (req, res) => {
+    const reactPath = path.join(__dirname, '../public/index.html');
+    res.sendFile(reactPath);
+  });
+
+  app.listen(app.get('port'), () => console.log(`listening on port ${app.get('port')}...`));
+}
