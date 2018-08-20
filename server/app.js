@@ -1,6 +1,10 @@
 require('newrelic');
 require('dotenv').config();
 
+const redis = require('redis');
+
+const { REDIS_PORT } = process.env;
+
 const express = require('express');
 const path = require('path');
 const cluster = require('cluster');
@@ -26,6 +30,14 @@ if (cluster.isMaster) {
   });
 } else {
   const app = express();
+
+  // redis
+  const client = redis.createClient(REDIS_PORT);
+
+  // TODO: Refactor - where should this live?
+  const repoNumber = response.body.length;
+  client.setex(org, 5, repoNumber);
+  res.send(respond(org, repoNumber));
 
   app.set('port', process.env.PORT || 3004);
 
