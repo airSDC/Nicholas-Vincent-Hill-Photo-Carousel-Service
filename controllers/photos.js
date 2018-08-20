@@ -1,4 +1,5 @@
 const db = require('../models');
+const redisClient = require('../server/redis');
 
 module.exports = {
   get(req, res, next) {
@@ -7,9 +8,19 @@ module.exports = {
       route: '/api/photos/:id'
     */
     const roomId = req.params.id;
+    redisClient.get(roomId, (err, data) => {
+      if (err) {
+        throw err;
+      }
 
-    db.getPhoto(roomId, (data) => {
-      res.json(data.rows);
+      if (data !== null) {
+        res.send(JSON.parse(data));
+      } else {
+        db.getPhoto(roomId, (data) => {
+          redisClient.set(roomId, JSON.stringify(data.rows));
+          res.status(200).send(data.rows);
+        });
+      }
     });
   },
   post(req, res, next) {
