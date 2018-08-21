@@ -31,21 +31,7 @@ if (cluster.isMaster) {
 } else {
   const app = express();
 
-  // redis
-  const client = redis.createClient(REDIS_PORT);
-
-  // TODO: Refactor - where should this live?
-  const repoNumber = response.body.length;
-  client.setex(org, 5, repoNumber);
-  res.send(respond(org, repoNumber));
-
   app.set('port', process.env.PORT || 3004);
-
-  app.use((res, req, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-    next();
-  });
 
   app.use('/api', routes);
 

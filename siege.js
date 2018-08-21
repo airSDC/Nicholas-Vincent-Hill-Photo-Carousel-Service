@@ -12,7 +12,7 @@ for (let i = 0; i < arrSize; i += 1) {
 let sieger = siege().on(3004);
 
 for (let i = 0; i < randomNumbers.length; i += 1) {
-  sieger = sieger.for(1).times.get(`/api/rooms/${randomNumbers[i]}/photos`);
+  sieger = sieger.for(5000).times.get(`/api/rooms/${randomNumbers[i]}/photos`);
 }
 
 sieger.attack();
