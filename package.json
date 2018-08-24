@@ -20,6 +20,7 @@
     "docker:deploy": "docker tag airfec_photos airfec/airfec_photos:latest && docker push airfec/airfec_photos"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-jest": "^23.4.0",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
