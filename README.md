@@ -1,6 +1,6 @@
 # Airbnb Photo Component
 
-> This is an mock-up airbnb booking component load-tested during the Hack Reactor immersive's System Design Capstone project.
+> System-design case study load-testing server/database choices, optimizations, node-clustering, and caching.
 
 ## Related Projects
 
